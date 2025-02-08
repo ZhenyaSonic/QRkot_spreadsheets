@@ -3,9 +3,15 @@ from typing import Optional
 
 from pydantic import (Field, NonNegativeInt, StrictBool, BaseModel, validator)
 
+from app.constants import NAME_MAX_LENGTH, NAME_MIN_LENGTH
+
 
 class CharityProjectBase(BaseModel):
-    name: Optional[str] = Field(..., min_length=1, max_length=100)
+    name: Optional[str] = Field(
+        ...,
+        min_length=NAME_MIN_LENGTH,
+        max_length=NAME_MAX_LENGTH
+    )
     description: Optional[str]
     full_amount: NonNegativeInt
 

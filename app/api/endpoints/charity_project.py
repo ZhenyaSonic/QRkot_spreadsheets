@@ -36,11 +36,10 @@ async def create_charity_project(
     await check_name_duplicate(project.name, session)
     new_project = await charity_project_crud.create(project, session)
 
-    invest_project = await distribute_resources(
+    return await distribute_resources(
         source=new_project,
         target_model=Donation,
         session=session)
-    return invest_project
 
 
 @router.get('/',
